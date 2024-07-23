@@ -1,11 +1,14 @@
+import 'package:app1/listItem.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyWidget());
+  runApp(MyWidget());
 }
 
 class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
+  MyWidget({super.key});
+
+  final List todoList = ["jacques", "alex", "nathan", "emil"];
 
   @override
   Widget build(BuildContext context) {
@@ -17,34 +20,12 @@ class MyWidget extends StatelessWidget {
               ),
               backgroundColor: const Color.fromARGB(255, 77, 225, 134),
             ),
-            body: Center(
-                child: Container(
-                    color: Colors.deepPurpleAccent,
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: ListView(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            child: Center(child: Text('sikatenda')),
-                            decoration: BoxDecoration(
-                                color: Colors.amber,
-                                borderRadius: BorderRadius.circular(12.0)),
-                            height: 100,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            child: Center(child: Text('Feruzi')),
-                            decoration: BoxDecoration(
-                                color: Colors.amber,
-                                borderRadius: BorderRadius.circular(12.0)),
-                            height: 100,
-                          ),
-                        )
-                      ],
-                    )))));
+            body: ListView.builder(
+                itemCount: todoList.length,
+                itemBuilder: (context, index) {
+                  return MyList(
+                    child: todoList[index],
+                  );
+                })));
   }
 }
