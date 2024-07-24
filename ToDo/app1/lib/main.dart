@@ -14,18 +14,24 @@ class MyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-            appBar: AppBar(
-              title: const Center(
-                child: Text("To Do"),
-              ),
-              backgroundColor: const Color.fromARGB(255, 77, 225, 134),
-            ),
-            body: ListView.builder(
-                itemCount: todoList.length,
-                itemBuilder: (context, index) {
-                  return MyList(
-                    child: todoList[index],
-                  );
-                })));
+      appBar: AppBar(
+        title: const Center(
+          child: Text("To Do"),
+        ),
+        backgroundColor: const Color.fromARGB(255, 77, 225, 134),
+      ),
+      body: ListView.builder(
+          itemCount: todoList.length,
+          itemBuilder: (context, index) {
+            return MyList(
+              child: todoList[index],
+            );
+          }),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.grey,
+        onPressed: () {},
+        child: const Icon(Icons.add_circle),
+      ),
+    ));
   }
 }

@@ -13,8 +13,8 @@ class MyList extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
               color: Colors.amber, borderRadius: BorderRadius.circular(12.0)),
-          height: 100,
-          width: 300,
+          height: 90,
+          width: 270,
           child: Column(
             children: [
               Text(child, style: const TextStyle(fontSize: 21)),
