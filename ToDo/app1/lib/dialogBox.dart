@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 
 class MyDialog extends StatelessWidget {
-  const MyDialog({super.key});
+  MyDialog({super.key});
+
+  final String dpValue = 'select';
+
+  final List<String> dpItems = ['done', 'undone'];
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: const Color.fromARGB(255, 202, 142, 142),
       content: Container(
-        height: 150,
-        child: Column(
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12))),
-            ),
-            DropdownButton(items: items, onChanged: onChanged)
-          ],
-        ),
+        height: 120,
       ),
     );
   }
