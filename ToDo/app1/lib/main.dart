@@ -26,13 +26,6 @@ class _MyWidgetState extends State<MyWidget> {
     );
   }
 
-  Future openDialog() => showDialog(
-        context: context,
-        builder: (context) => const AlertDialog(
-          title: Text('box'),
-        ),
-      );
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -52,7 +45,16 @@ class _MyWidgetState extends State<MyWidget> {
           }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.grey,
-        onPressed: openDialog,
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return const AlertDialog(
+                  title: Text('Success'),
+                  content: Text('saved'),
+                );
+              });
+        },
         child: const Icon(Icons.add_circle),
       ),
     ));
