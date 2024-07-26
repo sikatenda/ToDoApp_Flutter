@@ -3,7 +3,7 @@ import 'package:app1/listItem.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyWidget());
+  runApp(const MaterialApp(home: MyWidget()));
 }
 
 class MyWidget extends StatefulWidget {
@@ -28,8 +28,7 @@ class _MyWidgetState extends State<MyWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: const Center(
           child: Text("To Do"),
@@ -45,18 +44,9 @@ class _MyWidgetState extends State<MyWidget> {
           }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.grey,
-        onPressed: () {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return const AlertDialog(
-                  title: Text('Success'),
-                  content: Text('saved'),
-                );
-              });
-        },
+        onPressed: createTask,
         child: const Icon(Icons.add_circle),
       ),
-    ));
+    );
   }
 }

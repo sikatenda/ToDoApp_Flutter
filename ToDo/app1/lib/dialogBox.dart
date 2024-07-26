@@ -12,7 +12,8 @@ class MyDialog extends StatelessWidget {
     return AlertDialog(
       backgroundColor: const Color.fromARGB(255, 202, 142, 142),
       content: Container(
-        height: 120,
+        height: 180,
+        width: 150,
       ),
     );
   }
