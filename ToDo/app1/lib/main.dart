@@ -15,13 +15,26 @@ class MyWidget extends StatefulWidget {
 
 class _MyWidgetState extends State<MyWidget> {
   final List todoList = ["jacques", "alex", "nathan", "emil"];
+  final _controller = TextEditingController();
+
+  void saveTask() {
+    setState(() {
+      todoList.add([_controller, '===']);
+      _controller.clear();
+    });
+    Navigator.of(context).pop();
+  }
 
   //create new task
   void createTask() {
     showDialog(
       context: context,
       builder: (context) {
-        return MyDialog();
+        return MyDialog(
+          controller: _controller,
+          onSave: saveTask,
+          onCancel: Navigator.of(context).pop,
+        );
       },
     );
   }
