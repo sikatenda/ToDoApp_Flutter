@@ -1,6 +1,5 @@
+import 'package:app1/button.dart';
 import 'package:flutter/material.dart';
-
-import 'button.dart';
 
 class MyDialog extends StatelessWidget {
   final controller;

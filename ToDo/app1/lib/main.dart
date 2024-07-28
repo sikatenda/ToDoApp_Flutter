@@ -14,12 +14,15 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> {
-  final List todoList = ["jacques", "alex", "nathan", "emil"];
+  final List todoList = [
+    ["jacques", "undone"],
+    ["alex", "undone"]
+  ];
   final _controller = TextEditingController();
 
   void saveTask() {
     setState(() {
-      todoList.add([_controller, '===']);
+      todoList.add([_controller.text, 'undone']);
       _controller.clear();
     });
     Navigator.of(context).pop();
@@ -52,7 +55,8 @@ class _MyWidgetState extends State<MyWidget> {
           itemCount: todoList.length,
           itemBuilder: (context, index) {
             return MyList(
-              child: todoList[index],
+              name: todoList[index][0],
+              completed: todoList[index][1],
             );
           }),
       floatingActionButton: FloatingActionButton(
