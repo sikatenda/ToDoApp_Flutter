@@ -1,13 +1,18 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class MyList extends StatelessWidget {
   final String name;
   final String completed;
+  VoidCallback onDelete;
 
-  const MyList({
+  MyList({
     super.key,
     required this.name,
     required this.completed,
+    required this.onDelete,
   });
 
   @override
@@ -41,7 +46,7 @@ class MyList extends StatelessWidget {
                 const SizedBox(
                   width: 100,
                 ),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.delete)),
+                IconButton(onPressed: onDelete, icon: const Icon(Icons.delete)),
               ],
             ),
           ],

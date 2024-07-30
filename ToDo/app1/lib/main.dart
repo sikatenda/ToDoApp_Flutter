@@ -57,6 +57,11 @@ class _MyWidgetState extends State<MyWidget> {
             return MyList(
               name: todoList[index][0],
               completed: todoList[index][1],
+              onDelete: () {
+                setState(() {
+                  todoList.removeAt(index);
+                });
+              },
             );
           }),
       floatingActionButton: FloatingActionButton(
