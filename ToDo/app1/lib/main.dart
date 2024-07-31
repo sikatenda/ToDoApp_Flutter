@@ -1,5 +1,6 @@
 import 'package:app1/dialogBox.dart';
 import 'package:app1/listItem.dart';
+import 'package:app1/updateDialog.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,6 +20,7 @@ class _MyWidgetState extends State<MyWidget> {
     ["alex", "undone"]
   ];
   final _controller = TextEditingController();
+  String? value1;
 
   void saveTask() {
     setState(() {
@@ -26,6 +28,12 @@ class _MyWidgetState extends State<MyWidget> {
       _controller.clear();
     });
     Navigator.of(context).pop();
+  }
+
+  updateTask(int index) {
+    setState(() {
+      todoList[index] = [_controller.text, value1];
+    });
   }
 
   //create new task
@@ -61,6 +69,14 @@ class _MyWidgetState extends State<MyWidget> {
                 setState(() {
                   todoList.removeAt(index);
                 });
+              },
+              onUpdate: () {
+                MyDialogUpdate(
+                  controller: todoList[index][0],
+                  dpValue: todoList[index][1],
+                  onUpdate: updateTask(index),
+                  onCancel: Navigator.of(context).pop,
+                );
               },
             );
           }),

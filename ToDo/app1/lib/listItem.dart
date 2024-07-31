@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:app1/updateDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -7,13 +8,30 @@ class MyList extends StatelessWidget {
   final String name;
   final String completed;
   VoidCallback onDelete;
+  VoidCallback onUpdate;
+
+  var context;
 
   MyList({
     super.key,
     required this.name,
     required this.completed,
     required this.onDelete,
+    required this.onUpdate,
   });
+
+  void updateList() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return MyDialogUpdate(
+            controller: name,
+            dpValue: completed,
+            onUpdate: onUpdate,
+            onCancel: Navigator.of(context).pop,
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +60,7 @@ class MyList extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.edit_rounded)),
+                    onPressed: onUpdate, icon: const Icon(Icons.edit_rounded)),
                 const SizedBox(
                   width: 100,
                 ),

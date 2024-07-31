@@ -1,17 +1,19 @@
 import 'package:app1/button.dart';
 import 'package:flutter/material.dart';
 
-class MyDialog extends StatelessWidget {
+class MyDialogUpdate extends StatelessWidget {
   final controller;
-  VoidCallback onSave;
+
+  VoidCallback onUpdate;
   VoidCallback onCancel;
-  MyDialog(
+  MyDialogUpdate(
       {super.key,
       required this.controller,
-      required this.onSave,
+      required this.dpValue,
+      required this.onUpdate,
       required this.onCancel});
 
-  String dpValue = 'done';
+  String dpValue;
 
   final List<String> items = ['done', 'undone'];
 
@@ -32,10 +34,27 @@ class MyDialog extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12)),
                   hintText: "New task"),
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: DropdownButton(
+                dropdownColor: Colors.grey,
+                value: dpValue,
+                icon: const Icon(Icons.keyboard_arrow_down),
+                items: items.map((String items) {
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Text(items),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  dpValue = newValue!;
+                },
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                MyButton(text: 'save', onPressed: onSave),
+                MyButton(text: 'update', onPressed: onUpdate),
                 const SizedBox(
                   width: 4,
                 ),
