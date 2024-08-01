@@ -20,7 +20,7 @@ class _MyWidgetState extends State<MyWidget> {
     ["alex", "undone"]
   ];
   final _controller = TextEditingController();
-  String? value1;
+  String? value1 = '';
 
   void saveTask() {
     setState(() {
@@ -30,11 +30,28 @@ class _MyWidgetState extends State<MyWidget> {
     Navigator.of(context).pop();
   }
 
-  updateTask(int index) {
+  updateTask() {
+    int index = 0;
     setState(() {
       todoList[index] = [_controller.text, value1];
+      _controller.clear();
     });
+    Navigator.of(context).pop();
   }
+
+  //update task
+  /*void updateList() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return MyDialogUpdate(
+            controller: _controller,
+            dpValue: value1,
+            onUpdate: updateTask,
+            onCancel: Navigator.of(context).pop,
+          );
+        });
+  }*/
 
   //create new task
   void createTask() {
@@ -63,6 +80,7 @@ class _MyWidgetState extends State<MyWidget> {
           itemCount: todoList.length,
           itemBuilder: (context, index) {
             return MyList(
+              context: context,
               name: todoList[index][0],
               completed: todoList[index][1],
               onDelete: () {
@@ -71,13 +89,30 @@ class _MyWidgetState extends State<MyWidget> {
                 });
               },
               onUpdate: () {
-                MyDialogUpdate(
-                  controller: todoList[index][0],
-                  dpValue: todoList[index][1],
-                  onUpdate: updateTask(index),
-                  onCancel: Navigator.of(context).pop,
-                );
-              },
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return MyDialogUpdate(
+                        controller: todoList[index][0],
+                        dpValue: todoList[index][1],
+                        onUpdate: () {
+                          setState(() {
+                            todoList[index] = [
+                              todoList[index][0],
+                              todoList[index][1]
+                            ];
+                            _controller.clear();
+                          });
+                          Navigator.of(context).pop();
+                        },
+                        onCancel: Navigator.of(context).pop,
+                      );
+                    });
+              }, //() {
+              //setState(() {
+              //todoList[index] = [todoList[index][0], todoList[index][1]];
+              //});
+              //},
             );
           }),
       floatingActionButton: FloatingActionButton(

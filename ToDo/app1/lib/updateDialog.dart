@@ -13,7 +13,7 @@ class MyDialogUpdate extends StatelessWidget {
       required this.onUpdate,
       required this.onCancel});
 
-  String dpValue;
+  String dpValue = 'undone';
 
   final List<String> items = ['done', 'undone'];
 
@@ -28,11 +28,11 @@ class MyDialogUpdate extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             TextField(
-              controller: controller,
+              controller: TextEditingController(),
               decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12)),
-                  hintText: "New task"),
+                  hintText: "update task"),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),

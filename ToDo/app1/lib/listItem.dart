@@ -10,28 +10,22 @@ class MyList extends StatelessWidget {
   VoidCallback onDelete;
   VoidCallback onUpdate;
 
-  var context;
+  var _context;
 
-  MyList({
-    super.key,
-    required this.name,
-    required this.completed,
-    required this.onDelete,
-    required this.onUpdate,
-  });
+  get context => _context;
 
-  void updateList() {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return MyDialogUpdate(
-            controller: name,
-            dpValue: completed,
-            onUpdate: onUpdate,
-            onCancel: Navigator.of(context).pop,
-          );
-        });
+  set context(value) {
+    _context = value;
   }
+
+  MyList(
+      {super.key,
+      required this.name,
+      required this.completed,
+      required this.onDelete,
+      required this.onUpdate,
+      required dynamic context})
+      : _context = context;
 
   @override
   Widget build(BuildContext context) {
