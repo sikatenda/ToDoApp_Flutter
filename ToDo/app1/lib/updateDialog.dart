@@ -1,11 +1,12 @@
 import 'package:app1/button.dart';
 import 'package:flutter/material.dart';
 
-class MyDialogUpdate extends StatelessWidget {
+class MyDialogUpdate extends StatefulWidget {
   final controller;
 
   VoidCallback onUpdate;
   VoidCallback onCancel;
+
   MyDialogUpdate(
       {super.key,
       required this.controller,
@@ -15,7 +16,13 @@ class MyDialogUpdate extends StatelessWidget {
 
   String dpValue = 'undone';
 
+  @override
+  State<MyDialogUpdate> createState() => _MyDialogUpdateState();
+}
+
+class _MyDialogUpdateState extends State<MyDialogUpdate> {
   final List<String> items = ['done', 'undone'];
+  //String dpValue = 'undone';
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +45,7 @@ class MyDialogUpdate extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: DropdownButton(
                 dropdownColor: Colors.grey,
-                value: dpValue,
+                value: widget.dpValue,
                 icon: const Icon(Icons.keyboard_arrow_down),
                 items: items.map((String items) {
                   return DropdownMenuItem(
@@ -47,18 +54,20 @@ class MyDialogUpdate extends StatelessWidget {
                   );
                 }).toList(),
                 onChanged: (String? newValue) {
-                  dpValue = newValue!;
+                  setState(() {
+                    widget.dpValue = newValue!;
+                  });
                 },
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                MyButton(text: 'update', onPressed: onUpdate),
+                MyButton(text: 'update', onPressed: widget.onUpdate),
                 const SizedBox(
                   width: 4,
                 ),
-                MyButton(text: 'cancel', onPressed: onCancel),
+                MyButton(text: 'cancel', onPressed: widget.onCancel),
               ],
             )
           ],
