@@ -27,6 +27,20 @@ class MyList extends StatelessWidget {
       required dynamic context})
       : _context = context;
 
+  //update task
+  void updateList() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return MyDialogUpdate(
+            controller: name,
+            dpValue: completed,
+            onUpdate: onUpdate,
+            onCancel: Navigator.of(context).pop,
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(

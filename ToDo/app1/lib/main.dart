@@ -20,7 +20,7 @@ class _MyWidgetState extends State<MyWidget> {
     ["alex", "undone"]
   ];
   final _controller = TextEditingController();
-  String? value1 = '';
+  String value1 = '';
 
   void saveTask() {
     setState(() {
@@ -40,7 +40,7 @@ class _MyWidgetState extends State<MyWidget> {
   }
 
   //update task
-  /*void updateList() {
+  void updateList() {
     showDialog(
         context: context,
         builder: (context) {
@@ -51,7 +51,7 @@ class _MyWidgetState extends State<MyWidget> {
             onCancel: Navigator.of(context).pop,
           );
         });
-  }*/
+  }
 
   //create new task
   void createTask() {
@@ -80,15 +80,22 @@ class _MyWidgetState extends State<MyWidget> {
           itemCount: todoList.length,
           itemBuilder: (context, index) {
             return MyList(
-              context: context,
-              name: todoList[index][0],
-              completed: todoList[index][1],
-              onDelete: () {
-                setState(() {
-                  todoList.removeAt(index);
-                });
-              },
-              onUpdate: () {
+                context: context,
+                name: todoList[index][0],
+                completed: todoList[index][1],
+                onDelete: () {
+                  setState(() {
+                    todoList.removeAt(index);
+                  });
+                },
+                onUpdate: () {
+                  setState(() {
+                    todoList[index] = [todoList[index][0], todoList[index][1]];
+                    _controller.clear();
+                  });
+                  Navigator.of(context).pop();
+                }
+                /* () {
                 showDialog(
                     context: context,
                     builder: (context) {
@@ -108,12 +115,9 @@ class _MyWidgetState extends State<MyWidget> {
                         onCancel: Navigator.of(context).pop,
                       );
                     });
-              }, //() {
-              //setState(() {
-              //todoList[index] = [todoList[index][0], todoList[index][1]];
-              //});
-              //},
-            );
+              }, */
+
+                );
           }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.grey,
