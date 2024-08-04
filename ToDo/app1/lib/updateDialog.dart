@@ -14,7 +14,7 @@ class MyDialogUpdate extends StatefulWidget {
       required this.onUpdate,
       required this.onCancel});
 
-  String dpValue = 'undone';
+  String dpValue;
 
   @override
   State<MyDialogUpdate> createState() => _MyDialogUpdateState();
@@ -22,7 +22,6 @@ class MyDialogUpdate extends StatefulWidget {
 
 class _MyDialogUpdateState extends State<MyDialogUpdate> {
   final List<String> items = ['done', 'undone'];
-  //String dpValue = 'undone';
 
   @override
   Widget build(BuildContext context) {

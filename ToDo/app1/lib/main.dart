@@ -31,9 +31,9 @@ class _MyWidgetState extends State<MyWidget> {
   }
 
   updateTask() {
-    int index = 0;
+    int x = 0;
     setState(() {
-      todoList[index] = [_controller.text, value1];
+      todoList[x] = [_controller.text, value1];
       _controller.clear();
     });
     Navigator.of(context).pop();
