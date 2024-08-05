@@ -62,7 +62,7 @@ class _MyDialogUpdateState extends State<MyDialogUpdate> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                MyButton(text: 'update', onPressed: widget.onUpdate),
+                MyButton(text: 'update', onPressed: () {} /*widget.onUpdate*/),
                 const SizedBox(
                   width: 4,
                 ),
